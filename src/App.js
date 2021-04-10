@@ -76,19 +76,18 @@ class App extends Component{
   }
 
 
-  checkMimeType=(event)=>{
   //getting file object
   let files = event.target.files 
   //define message container
   let err = ''
-  // list allow mime type
- const types = ['text/csv','application/vnd.ms-excel']
+  // list allow file types
+ const types = ['csv'];
   // loop access array
   for(var x = 0; x<files.length; x++) {
    // compare file type find doesn't matach
-       if (types.every(type => files[x].type !== type)) {
+       if (!(types.includes(files[x].name.split(".")[1]))) {
        // create error message and assign to container   
-       err += files[x].type+' is not a supported format\n';
+       err += files[x].name+' is not a supported format\n';
      }
    };
 
